@@ -16,6 +16,20 @@ ruby '3.1.0'
 rails '~> 6.1.5'
 mysql '~> 0.5'
 
+* Getting the servers and foundational data established.
+Stop other existing postgresql server with `brew services stop postgresql`
+Start the mysql server with `brew services start mysql`
+Scaffold the first model (per tutorial)
+Create the db with `rails db:create`
+Run the migration with `rails db:migrate`
+Start the rails server locally `rails s`
+Check it out: http://localhost:3000/authors
+Scaffold the next model (per tutoria)
+Run the migration, confirm on http://localhost:3000/articles
+Run the tests with `rails test`, probably need to add `gem 'net-smtp'` to the gemfile.
+Resolve the errors.
+
+
 * System dependencies
 
 * Configuration
