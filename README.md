@@ -16,6 +16,15 @@ ruby '3.1.0'
 rails '~> 6.1.5'
 mysql '~> 0.5'
 
+* Getting the server working
+Stop other existing postgresql server with `brew services stop postgresql`
+Start the mysql server with `brew services start mysql`
+Scaffolding the first model
+Create the db with `rails db:create`
+Run the migration with `rails db:migrate`
+Start the rails server locally `rails s`
+Check it out: http://localhost:3000/authors
+
 * System dependencies
 
 * Configuration
