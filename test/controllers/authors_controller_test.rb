@@ -6,7 +6,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get authors_url
+    get authors_path
     assert_response :success
   end
 
