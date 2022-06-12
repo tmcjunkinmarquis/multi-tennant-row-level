@@ -28,6 +28,13 @@ Scaffold the next model (per tutoria)
 Run the migration, confirm on http://localhost:3000/articles
 Run the tests with `rails test`, probably need to add `gem 'net-smtp'` to the gemfile.
 Resolve the errors.
+Add authors (the tenants). 
+Add articles.
+
+Key info:  "the critical requirement is to add the tenant_id field to every model that is going to be managed by our tenants."
+
+Add tenant_id to Article with `rails g migration AddTenantIdToArticle tenant_id:integer`
+Run tests, resolve error (by commenting parallelize statement in test/test_helper.rb) from outstanding issue(https://github.com/rails/rails/issues/41176)
 
 
 * System dependencies
