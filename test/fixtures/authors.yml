@@ -1,13 +1,14 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  slug: MyString
-  first_name: MyString
-  last_name: MyString
-  bio_info: MyString
+  id: 1
+  slug: one
+  first_name: AuthorOneFirstName
+  last_name: AuthorOneLastName
+  bio_info: BioOne
 
 two:
-  slug: MyString
-  first_name: MyString
-  last_name: MyString
-  bio_info: MyString
+  id: 2
+  slug: two
+  first_name: AuthorTwoFirstName
+  last_name: AuthorTwoLastName
+  bio_info: BioTwo
+  

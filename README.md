@@ -30,11 +30,17 @@ Run the tests with `rails test`, probably need to add `gem 'net-smtp'` to the ge
 Resolve the errors.
 Add authors (the tenants). 
 Add articles.
+Refactor top level domain length (tld_length) to zero, add subdomain contraint to articles routes, pass the author as a hidden field.
+Restart the rails server, visit "http://<subdomain>.localhost:3000/articles/new" to confirm
+Fail many tests from the same code:  (ActiveRecord::RecordNotFound: Couldn't find Author
+app/controllers/articles_controller.rb:87:in `set_author')
 
 Key info:  "the critical requirement is to add the tenant_id field to every model that is going to be managed by our tenants."
 
 Add tenant_id to Article with `rails g migration AddTenantIdToArticle tenant_id:integer`
 Run tests, resolve error (by commenting parallelize statement in test/test_helper.rb) from outstanding issue(https://github.com/rails/rails/issues/41176)
+
+TODO:  better testing:   https://thoughtbot.com/blog/acceptance-tests-with-subdomains
 
 
 * System dependencies

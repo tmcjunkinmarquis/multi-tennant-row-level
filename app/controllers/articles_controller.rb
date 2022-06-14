@@ -1,14 +1,26 @@
 class ArticlesController < ApplicationController
+  # before subdomains are implemented:
+  # before_action :set_authors, only: [:edit, :update, :new, :create]
+
+  # for subdomains: the author must be set before the article is set
+  before_action :set_author
   before_action :set_article, only: %i[ show edit update destroy ]
-  before_action :set_authors, only: [:edit, :update, :new, :create]
 
   # GET /articles or /articles.json
   def index
-    @articles = Article.all
+    # before subdomains are implemented:
+    # @articles = Article.all
+
+    # for subdomains: select only articles assigned to current tenant
+    @articles = Article.where(tenant_id: @author.id)
+    # look for the article with the id and the assigned author
+   
+      
   end
 
   # GET /articles/1 or /articles/1.json
   def show
+    @author = @author
   end
 
   # GET /articles/new
@@ -58,10 +70,17 @@ class ArticlesController < ApplicationController
     end
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |ex|
+    # render json: { status: 404, error: ex.to_s }, status: 404
+    render :action => "article_missing", :status => :not_found
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      # @article = Article.find(params[:id])
+      # look for the article with the id and the assigned author
+      @article = Article.find_by!(id: params[:id], tenant_id: @author.id)
     end
 
     # Only allow a list of trusted parameters through.
@@ -69,7 +88,11 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:title, :content, :tenant_id)
     end
 
-    def set_authors
-      @authors = Author.all
+    def set_author
+      # Set the author requested via the subdomain
+      @author = Author.find_by!(slug: request.subdomain)
     end
+
+    
+  
 end

@@ -73,4 +73,8 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # Rails set the top-level domain length to 1, but we want to use localhost to set this setting to 0
+  config.action_dispatch.tld_length = 0
+  
 end

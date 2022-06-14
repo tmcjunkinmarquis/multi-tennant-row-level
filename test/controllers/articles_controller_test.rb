@@ -2,6 +2,7 @@ require "test_helper"
 
 class ArticlesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @author = authors(:one)
     @article = articles(:one)
   end
 
@@ -11,13 +12,15 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
+    # new_article_url is http://www.example.com/articles/new
+    # TODO: test for subdomains
     get new_article_url
     assert_response :success
   end
 
   test "should create article" do
     assert_difference('Article.count') do
-      post articles_url, params: { article: { content: @article.content, title: @article.title } }
+      post articles_url, params: { article: { content: @article.content, title: @article.title, author: @author } }
     end
 
     assert_redirected_to article_url(Article.last)

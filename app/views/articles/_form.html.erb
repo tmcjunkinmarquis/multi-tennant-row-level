@@ -11,10 +11,8 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :author %>
-    <%= form.select :tenant_id, options_from_collection_for_select(@authors, 'id', 'full_name', article.tenant_id), include_blank: true %>
-    </div>
+  <div>hidden field here (tenant_id: "#{tenant_id}")</div>
+  <%= form.hidden_field :tenant_id, value: @author.id %>
 
   <div class="field">
     <%= form.label :title %>
